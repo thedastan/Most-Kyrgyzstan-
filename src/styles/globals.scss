@@ -1,0 +1,98 @@
+@use "./reset";
+@use "./phone-input";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Inter, sans-serif;
+  @extend %unscroll;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 40s linear infinite;
+  display: flex;
+}
+
+//
+
+.burger__button {
+  position: absolute;
+  left: 0px;
+
+  overflow: hidden;
+
+  display: block;
+  transform: scale(0.47);
+  z-index: 1000;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    width: 70px;
+    cursor: pointer;
+
+    @media (max-width: 700px) {
+      cursor: default;
+    }
+  }
+
+  label span {
+    background: #000000;
+    border-radius: 10px;
+    height: 5px;
+    margin: 7px 0;
+    transition: 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  }
+
+  span:nth-of-type(1) {
+    width: 50%;
+  }
+
+  span:nth-of-type(2) {
+    width: 100%;
+  }
+
+  span:nth-of-type(3) {
+    width: 75%;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"]:checked ~ span:nth-of-type(1) {
+    transform-origin: bottom;
+    transform: rotatez(45deg) translate(8px, 0px);
+  }
+
+  input[type="checkbox"]:checked ~ span:nth-of-type(2) {
+    transform-origin: top;
+    transform: rotatez(-45deg);
+  }
+
+  input[type="checkbox"]:checked ~ span:nth-of-type(3) {
+    transform-origin: bottom;
+    width: 50%;
+    transform: translate(30px, -9px) rotatez(45deg);
+  }
+}
