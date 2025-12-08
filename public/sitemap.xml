@@ -3,7 +3,28 @@
 
   <url>
     <loc>https://most-kyrgyzstan.vercel.app/</loc>
-    <lastmod>2025-10-05</lastmod>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://most-kyrgyzstan.vercel.app/ru</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url><url>
+    <loc>https://most-kyrgyzstan.vercel.app/de</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url><url>
+    <loc>https://most-kyrgyzstan.vercel.app/ky</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url><url>
+    <loc>https://most-kyrgyzstan.vercel.app/en</loc>
+    <lastmod>2025-12-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

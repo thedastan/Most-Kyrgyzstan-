@@ -17,8 +17,8 @@ export const generateMetadata = ({
   keywords,
   image,
   robots: "index, follow",
-  authors: [{ name: "Мост в Кыргызстан" }], ////! Имя проекта
-  publisher: "Мост в Кыргызстан", ////! Имя проекта
+  authors: [{ name: "Brücke nach Kirgisistan" }], ////! Имя проекта
+  publisher: "Brücke nach Kirgisistan", ////! Имя проекта
   viewport: "width=device-width, initial-scale=1.0",
   openGraph: {
     title,
@@ -26,7 +26,7 @@ export const generateMetadata = ({
     url,
     type: "website",
     locale: "ru_KG",
-    siteName: "Мост в Кыргызстан", ////! Имя проекта
+    siteName: "Brücke nach Kirgisistan", ////! Имя проекта
     images: [
       {
         url: image,
@@ -58,7 +58,7 @@ export const generateMetadata = ({
 export const generateStructuredData = () => ({
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Мост в Кыргызстан", ////! Имя проекта
+  name: "Brücke nach Kirgisistan", ////! Имя проекта
   url: "https://most-kyrgyzstan.vercel.app/", ////! url проекта
   potentialAction: {
     "@type": "SearchAction",
