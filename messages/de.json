@@ -1,10 +1,11 @@
 {
   "Header": {
-    "hero": "Startseite",
-    "about": "Über uns",
-    "projects": "Projekte",
-    "mission": "Unsere Mission",
-    "events": "Veranstaltungen"
+    "hero": "STARTSEITE",
+    "about": "ÜBER UNS",
+    "projects": "PROJEKTE",
+    "mission": "UNSERE MISSION",
+    "events": "VERANSTALTUNGEN",
+    "contacts": "KONTAKTE"
   },
   "Hero": {
     "title": "Brücke der Menschlichkeit und Hoffnung",

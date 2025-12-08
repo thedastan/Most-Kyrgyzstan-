@@ -16,10 +16,10 @@ const LanguageSelect = ({ textColor = "text-white" }: LanguageSelectProps) => {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const options = [
-    { value: "en", label: "ENG" },
-    { value: "ru", label: "RUS" },
-    { value: "ky", label: "KGZ" },
     { value: "de", label: "DEU" },
+    { value: "en", label: "ENG" },
+    { value: "ky", label: "KGZ" },
+    { value: "ru", label: "RUS" },
   ];
 
   const LanguageChange = (newLocale: string) => {

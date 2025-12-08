@@ -9,6 +9,20 @@ namespace BLOG {
   export type GetBlogReq = void;
 }
 
+namespace PROJECTS {
+  export type GetProjectsRes = {
+    id: number;
+    title: string;
+    description: string;
+    images: {
+      id: number;
+      image: string;
+    }[];
+  }[];
+
+  export type GetProjectsReq = void;
+}
+
 namespace CONTACTS {
   export type GetContactsRes = {
     id: number;
@@ -24,6 +38,7 @@ namespace EVENTS {
   export type GetEventsRes = {
     id: number;
     title: string;
+    description: string;
     image: string;
     address: string;
     start_time: string;

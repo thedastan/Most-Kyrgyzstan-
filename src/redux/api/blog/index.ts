@@ -18,7 +18,7 @@ const api = index.injectEndpoints({
       providesTags: ["event"],
     }),
 
-    getProjects: build.query<BLOG.GetBlogRes, BLOG.GetBlogReq>({
+    getProjects: build.query<PROJECTS.GetProjectsRes, PROJECTS.GetProjectsReq>({
       query: () => ({
         url: `/projects/`,
         method: "GET",

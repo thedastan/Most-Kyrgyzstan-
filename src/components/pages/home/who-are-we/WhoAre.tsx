@@ -2,7 +2,6 @@ import Button from "@/components/ui/button/Button";
 import { Description } from "@/components/ui/text/Description";
 import { Title } from "@/components/ui/text/Title";
 import logo from "@/assets/images/k.png";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
@@ -21,15 +20,6 @@ const WhoAre = () => {
                 key={index}
                 className="flex-shrink-0 flex items-center justify-center   h-[40px] px-20"
               >
-                <div className=" relative w-[80px] h-[40px]">
-                  <Image
-                    fill
-                    src={icon}
-                    alt="logo"
-                    objectFit="contain"
-                    className="max-w-none"
-                  />
-                </div>
                 <Title className="text-[#ffffff7a] uppercase">
                   {t("bridge")}
                 </Title>

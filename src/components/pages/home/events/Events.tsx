@@ -7,12 +7,19 @@ import { Title } from "@/components/ui/text/Title";
 import { CiLocationOn } from "react-icons/ci";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useState } from "react";
 
 import { useGetEventQuery } from "@/redux/api/blog";
 
 const Events = () => {
   const t = useTranslations("Events");
   const { data } = useGetEventQuery();
+
+  const [visibleCount, setVisibleCount] = useState(2);
+
+  // 🔥 Новые данные появляются первыми
+  const sortedData = [...(data || [])].reverse();
+  const visibleEvents = sortedData.slice(0, visibleCount);
 
   return (
     <section id="events" className="py-10">
@@ -24,9 +31,10 @@ const Events = () => {
           {t("title")}
         </Description>
 
-        <div className=" grid grid-cols-1 md:grid-cols-2 w-full mt-10  after: md:min-h-[630px] min-h-full">
-          {data?.map((el, index) => {
-            const isBlue = index % 3 === 0; // чётные — синий
+        <div className="grid grid-cols-1 md:grid-cols-2 w-full mt-10 md:min-h-[630px] min-h-full">
+          {visibleEvents.map((el, index) => {
+            const isBlue = index % 3 === 0;
+
             return (
               <div
                 key={el.id}
@@ -46,14 +54,18 @@ const Events = () => {
 
                 <div
                   className={`
-          md:h-[90px] h-[170px] w-full 
-          md:flex-row flex-col flex items-center md:justify-between justify-center 
-          gap-3 px-8 
-          ${isBlue ? "bg-[#1D49C5] text-white" : "bg-[#F3F5F0] text-black"}
-          ${isBlue ? "" : "order-1"}
-        `}
+                    w-full 
+                    md:flex-col flex-col flex items-center md:justify-start justify-center p-3 gap-2
+                   
+                    ${
+                      isBlue
+                        ? "bg-[#1D49C5] text-white"
+                        : "bg-[#F3F5F0] text-black"
+                    }
+                    ${isBlue ? "" : "order-1"}
+                  `}
                 >
-                  <div>
+                  <div className="flex flex-col w-full gap-2">
                     <Title className={isBlue ? "text-white" : ""}>
                       {el.title}
                     </Title>
@@ -69,16 +81,28 @@ const Events = () => {
                     </Description>
                   </div>
 
-                  <Link target={"_blank"} href={el.link || "/"}>
-                    <Button className="border-none text-white bg-[#E16C2B]">
-                      {t("more")}
-                    </Button>
-                  </Link>
+                  <div className="w-full flex justify-between flex-col md:flex-row gap-2">
+                    <Description>{el.description}</Description>
+                    <Link target={"_blank"} href={el.link || "/"}>
+                      <Button className="border-none w-full md:w-fit text-white bg-[#E16C2B]">
+                        {t("more")}
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
             );
           })}
         </div>
+
+        {visibleCount < sortedData.length && (
+          <Button
+            className="border-none text-white bg-[#E16C2B] mt-[30px]"
+            onClick={() => setVisibleCount((prev) => prev + 2)} // показывать ещё по 2
+          >
+            ЕЩЕ
+          </Button>
+        )}
       </div>
     </section>
   );

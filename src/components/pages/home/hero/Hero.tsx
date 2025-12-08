@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "@/components/ui/button/Button";
 import { Description } from "@/components/ui/text/Description";
 import { TitleComponent } from "@/components/ui/text/TitleComponent";
@@ -35,8 +34,14 @@ const Hero = () => {
                   </Button>
                 </Link>
                 <Link href="#project">
-                  <Button> {t("projects")}</Button>
+                  <Button className="px-[40px] md:px-[54px] border-none  py-[10px] rounded-[30px] bg-[#1D49C5] text-[14px] text-[#FFFFFF]">
+                    {t("projects")}
+                  </Button>
                 </Link>
+
+                {/* <Link href="#project">
+                  <Button className="bg-[#1D49C5]"> {t("projects")}</Button>
+                </Link> */}
               </div>
             </div>
 

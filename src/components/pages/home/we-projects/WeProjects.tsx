@@ -36,7 +36,7 @@ const WeProjects = () => {
               data-aos-delay={index * 300}
               key={index}
               style={{
-                backgroundImage: `url(${el.image})`,
+                backgroundImage: `url(${el.images[0]?.image})`,
                 backgroundSize: "cover",
               }}
               className="w-full h-[300px]  text-white rounded-[24px] p-8 flex flex-col items-start justify-end gap-3"
