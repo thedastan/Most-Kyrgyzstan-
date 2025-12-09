@@ -15,6 +15,8 @@ import Button from "@/components/ui/button/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
 import { useGetContactsQuery } from "@/redux/api/blog";
+import "alert-go/dist/notifier.css";
+import { toast } from "alert-go";
 
 const data = [frame, frame, frame, frame, frame, frame];
 
@@ -59,15 +61,16 @@ const Contacts = () => {
         }
       );
       reset();
-      alert("Сообщение отправлено!");
+
+      toast.success(t("success"), { position: "top-center" });
     } catch (error) {
-      console.error("Ошибка при отправке формы:", error);
-      alert("Ошибка при отправке формы!");
+      console.error(t("error"), error);
+      alert(t("alert"));
     }
   };
 
   return (
-    <section id="contact" className="bg-[#F3F5F0] py-[50px]">
+    <section id="contact" className="bg-[#F3F5F0] py-[120px] md:py-[30px]">
       <div className="overflow-hidden">
         <div className="flex h-[88px] items-center">
           <div className="flex">

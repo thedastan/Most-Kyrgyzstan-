@@ -7,6 +7,11 @@
     "events": "EVENTS",
     "contacts": "CONTACTS"
   },
+
+  "Footer": {
+    "developed": "Developed by IP Mukeev Dastan Rakymovich"
+  },
+
   "Hero": {
     "title": "A Bridge of Humanity and Hope",
     "description": "We connect people and organizations who want to help.",
@@ -54,6 +59,9 @@
     "title2": "Want to be part of the change?",
     "subscribe": "Subscribe",
     "email2": "Enter your email",
-    "year": "© 2025 All rights reserved. Brücke nach Kirgistan."
+    "year": "© 2025 All rights reserved. Brücke nach Kirgistan.",
+    "success": "Message sent!",
+    "error": "Error sending form:",
+    "alert": "Error sending form!"
   }
 }

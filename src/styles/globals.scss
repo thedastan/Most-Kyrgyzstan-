@@ -96,3 +96,21 @@ body {
     transform: translate(30px, -9px) rotatez(45deg);
   }
 }
+
+.notify.success {
+  background: #2ecc71 !important;
+  color: white !important;
+}
+
+.notify.error {
+  background: #e74c3c !important;
+}
+
+.notify.warning {
+  background: #f39c12 !important;
+  color: black !important;
+}
+
+.notify.default {
+  background: #2c3e50 !important;
+}

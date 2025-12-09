@@ -14,6 +14,9 @@ importers:
       '@reduxjs/toolkit':
         specifier: ^2.11.0
         version: 2.11.0(react-redux@9.2.0(@types/react@18.3.26)(react@19.2.1)(redux@5.0.1))(react@19.2.1)
+      alert-go:
+        specifier: ^1.0.12
+        version: 1.0.12
       aos:
         specifier: ^2.3.4
         version: 2.3.4
@@ -791,6 +794,9 @@ packages:
 
   ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
+
+  alert-go@1.0.12:
+    resolution: {integrity: sha512-V8zmrNo9ULDsQqL7onxfodNTHtzhk8508z1nqpH6EYzqYo9gtiEJBdsuo0wsFWi2oCmH3AW0RYaKF8yqKNX6mA==}
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -3049,6 +3055,8 @@ snapshots:
       fast-json-stable-stringify: 2.1.0
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
+
+  alert-go@1.0.12: {}
 
   ansi-regex@5.0.1: {}
 

@@ -4,6 +4,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import { useTranslations } from "next-intl";
 import Button from "@/components/ui/button/Button";
+import "alert-go/dist/notifier.css";
+import { toast } from "alert-go";
 
 interface IFormInput {
   name: string;
@@ -44,10 +46,11 @@ export const ContactForm = ({ onSubmissionSuccess }: ContactFormProps) => {
 
       onSubmissionSuccess?.(response.data);
       reset();
-      alert("Сообщение отправлено!");
+
+      toast.success(t("success"), { position: "top-center" });
     } catch (error) {
-      console.error("Ошибка при отправке формы:", error);
-      alert("Ошибка при отправке формы!");
+      console.error(t("error"), error);
+      alert(t("alert"));
     }
   };
 
