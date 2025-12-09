@@ -70,7 +70,7 @@ const Contacts = () => {
   };
 
   return (
-    <section id="contact" className="bg-[#F3F5F0] py-[25px] md:py-[30px]">
+    <section id="contact" className="bg-[#F3F5F0] py-[50px] md:py-[30px]">
       <div className="overflow-hidden">
         <div className="flex h-[88px] items-center">
           <div className="flex">

@@ -53,9 +53,8 @@ const Events = () => {
                 </div>
 
                 <div
-                  className={`
-                    w-full 
-                    md:flex-col flex-col flex items-center md:justify-start justify-center p-3 gap-2
+                  className={`w-full md:flex-col flex-col flex items-center
+                     md:justify-start justify-center p-3 gap-2
                    
                     ${
                       isBlue
@@ -84,7 +83,7 @@ const Events = () => {
                   <div className="w-full flex justify-between flex-col md:flex-row gap-2">
                     <Description>{el.description}</Description>
                     <Link target={"_blank"} href={el.link || "/"}>
-                      <Button className="border-none w-full md:w-fit text-white bg-[#E16C2B]">
+                      <Button className="border-none w-full md:w-[180px] text-white bg-[#E16C2B]">
                         {t("more")}
                       </Button>
                     </Link>
@@ -97,10 +96,10 @@ const Events = () => {
 
         {visibleCount < sortedData.length && (
           <Button
-            className="border-none text-white bg-[#E16C2B] mt-[30px]"
+            className="border-none text-white bg-[#E16C2B] mt-[30px] px-[50px]"
             onClick={() => setVisibleCount((prev) => prev + 2)} // показывать ещё по 2
           >
-            ЕЩЕ
+            {t("more2")}
           </Button>
         )}
       </div>
