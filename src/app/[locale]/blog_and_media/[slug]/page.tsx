@@ -1,4 +1,5 @@
 // src/app/[locale]/blog/[slug]/page.tsx
+import Blog_and_media from "@/components/pages/blog_and_media/Blog_and_media";
 import BlogMediaDetail from "@/components/pages/blog_and_media/detail/BlogMediaDetail";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -78,5 +79,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // Страница
 // --------------------
 export default function BlogPage() {
-  return <BlogMediaDetail />;
+  return <Blog_and_media />;
 }

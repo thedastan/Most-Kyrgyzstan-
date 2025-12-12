@@ -12,6 +12,7 @@ import logo from "@/assets/images/logo-new.png";
 const Header = () => {
   const t = useTranslations("Header");
   const [isOpen, setIsOpen] = useState(false);
+  const [active, setActive] = useState<string | null>(null);
   const [hash, setHash] = useState<string | null>(null);
 
   const router = useRouter();
@@ -20,20 +21,19 @@ const Header = () => {
   const toggleBox = () => setIsOpen((prev) => !prev);
 
   const handleAnchor = (id: string) => {
+    setActive(id);
+
     if (pathname !== "/") {
-      // Перейти на главную с хэшем
       router.push(`/#${id}`);
-      // Сохраняем hash чтобы скроллить после перехода
       setHash(id);
     } else {
-      // На главной просто скроллим
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: "smooth" });
     }
     setIsOpen(false);
   };
 
-  // После перехода на главную, скроллим к элементу
+  // Скролл после перехода
   useEffect(() => {
     if (hash) {
       const el = document.getElementById(hash);
@@ -44,6 +44,53 @@ const Header = () => {
     }
   }, [hash, pathname]);
 
+  // ➤ Автоматическая подсветка при скролле
+  useEffect(() => {
+    if (pathname !== "/") return;
+
+    const sections = [
+      "hero",
+      "about",
+      "project",
+      "blogMedia",
+      "events",
+      "contact",
+    ];
+
+    const observers: IntersectionObserver[] = [];
+
+    sections.forEach((id) => {
+      const element = document.getElementById(id);
+      if (!element) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActive(id);
+          }
+        },
+        { threshold: 0.5 } // секция видна минимум на 50%
+      );
+
+      observer.observe(element);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, [pathname]);
+
+  // Подсветка по initial hash
+  useEffect(() => {
+    const currentHash = window.location.hash.replace("#", "");
+    if (currentHash) setActive(currentHash);
+  }, [pathname]);
+
+  // стиль активного пункта меню
+  const activeClass = (id: string) =>
+    active === id ? "text-[#E16C2B]" : "text-gray-600";
+
   return (
     <header className="w-full h-[80px]">
       <div
@@ -52,11 +99,12 @@ const Header = () => {
       >
         <div className="container">
           <div className="flex justify-between md:flex-row flex-row-reverse items-center">
-            <div className="flex gap-[40px] items-center">
-              <Link href="/">
-                <Image width={90} height={63} src={logo} alt="img" />
-              </Link>
-              <div className="hidden items-center md:flex">
+            <div
+              className="flex gap-[40px] md:flex-row flex-row-reverse items-center cursor-pointer"
+              onClick={() => handleAnchor("hero")}
+            >
+              <Image width={90} height={63} src={logo} alt="img" />
+              <div className="items-center md:flex">
                 <LanguageSelect />
               </div>
             </div>
@@ -76,21 +124,46 @@ const Header = () => {
               </div>
             </div>
 
-            <div className="md:flex hidden items-center gap-[27px] text-gray-600">
-              <button onClick={() => handleAnchor("hero")}>{t("hero")}</button>
-              <button onClick={() => handleAnchor("about")}>
+            <div className="md:flex hidden items-center gap-[27px]">
+              <button
+                onClick={() => handleAnchor("hero")}
+                className={`${activeClass("hero")} transition`}
+              >
+                {t("hero")}
+              </button>
+
+              <button
+                onClick={() => handleAnchor("about")}
+                className={`${activeClass("about")} transition`}
+              >
                 {t("about")}
               </button>
-              <button onClick={() => handleAnchor("project")}>
+
+              <button
+                onClick={() => handleAnchor("project")}
+                className={`${activeClass("project")} transition`}
+              >
                 {t("projects")}
               </button>
-              <button onClick={() => handleAnchor("blogMedia")}>
+
+              <button
+                onClick={() => handleAnchor("blogMedia")}
+                className={`${activeClass("blogMedia")} transition`}
+              >
                 {t("blogMedia")}
               </button>
-              <button onClick={() => handleAnchor("events")}>
+
+              <button
+                onClick={() => handleAnchor("events")}
+                className={`${activeClass("events")} transition`}
+              >
                 {t("events")}
               </button>
-              <button onClick={() => handleAnchor("contact")}>
+
+              <button
+                onClick={() => handleAnchor("contact")}
+                className={`${activeClass("contact")} transition`}
+              >
                 {t("contacts")}
               </button>
             </div>

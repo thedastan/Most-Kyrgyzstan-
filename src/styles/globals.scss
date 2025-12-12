@@ -126,3 +126,18 @@ body {
   display: flex;
   text-align: center;
 }
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-left {
+  display: flex;
+  animation: scroll-left 20s linear infinite;
+  /* Важно: ширина контейнера должна быть в 2 раза больше одного блока */
+}

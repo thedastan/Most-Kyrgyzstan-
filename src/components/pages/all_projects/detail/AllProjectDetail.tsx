@@ -37,7 +37,7 @@ const AllProjectDetail = () => {
     <section>
       <div className="container !py-20">
         {/* SLIDER */}
-        <div className="relative w-full h-[400px] rounded-[24px] mb-10 overflow-hidden">
+        <div className="relative w-full md:h-[600px] h-[400px] rounded-[24px] mb-10 overflow-hidden">
           <Swiper
             modules={[Pagination, Autoplay]}
             pagination={{ clickable: true }}
@@ -52,7 +52,7 @@ const AllProjectDetail = () => {
           >
             {project.images?.map((img, index) => (
               <SwiperSlide key={index}>
-                <div className="relative w-full h-[400px]">
+                <div className="relative w-full md:h-[600px] h-[400px]">
                   <Image
                     src={img.image}
                     alt={project.title}

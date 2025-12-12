@@ -4,15 +4,15 @@ import { TitleComponent } from "@/components/ui/text/TitleComponent";
 import hero_img from "@/assets/images/f0214e54b5b650ce0888125d0a6270fb7d1d1313.png";
 import Image from "next/image";
 
-import img from "@/assets/images/Vector (2).png";
-import img2 from "@/assets/images/Vector (3).png";
+// import img from "@/assets/images/ornament.png";
+import img from "@/assets/images/Vector (4).png";
+
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 const Hero = () => {
   const t = useTranslations("Hero");
-  const data = [img, img, img, img, img];
-  const data2 = [img2, img2, img2, img2];
+  const data = [img, img, img, img, img, img, img];
 
   return (
     <section id="hero" className=" bg-[#F3F5F0]">
@@ -25,37 +25,52 @@ const Hero = () => {
               alt="img"
             />
           </div>
-          <div className="flex md:w-[50%] relative w-full justify-between  md:px-[30px] px-[20px] h-full  ">
-            <div className="flex flex-col gap-6 h-full justify-center">
+          <div className="md:w-[50%] w-full  md:px-[30px] px-[20px] h-full  ">
+            <div className="flex flex-col justify-center md:gap-[36px] gap-[20px] w-full h-full md:px-[30px]">
               <TitleComponent className="w-full max-w-[550px]">
                 {t("title")}
               </TitleComponent>
               <Description>{t("description")}</Description>
               <div className="flex gap-[12px] justify-between md:justify-start">
-                <Link href="#about">
-                  <Button className="px-[40px] md:px-[54px] border-none  py-[10px] rounded-[30px] bg-[#E16C2B] text-[14px] text-[#FFFFFF]">
-                    {t("about_us")}
+                <Link className="w-full md:w-fit" href="#project">
+                  <Button className="px-[40px] w-full md:w-fit md:px-[54px] border-none  py-[10px] rounded-[30px] bg-[#1D49C5] text-[14px] text-[#FFFFFF]">
+                    {t("projects")}
                   </Button>
                 </Link>
-                <Link href="#project">
-                  <Button className="px-[40px] md:px-[54px] border-none  py-[10px] rounded-[30px] bg-[#1D49C5] text-[14px] text-[#FFFFFF]">
-                    {t("projects")}
+                <Link className="w-full md:w-fit" href="#about">
+                  <Button className="px-[40px] w-full md:w-fit md:px-[54px] border-none  py-[10px] rounded-[30px] bg-[#E16C2B] text-[14px] text-[#FFFFFF]">
+                    {t("about_us")}
                   </Button>
                 </Link>
               </div>
             </div>
-
-            <div className="md:block hidden flex-col overflow-hidden">
-              {[...data, ...data].map((index) => (
-                <Image src={index} alt="img" />
+          </div>
+        </div>
+        <div className="overflow-hidden w-full">
+          <div className="flex h-[55px] items-center">
+            <div className="flex animate-scroll-left whitespace-nowrap">
+              {/* Дублируем два раза — для бесконечности */}
+              {Array.from({ length: 2 }).map((_, cloneIndex) => (
+                <div key={cloneIndex} className="flex">
+                  {data.map((icon, index) => (
+                    <div
+                      key={`${cloneIndex}-${index}`}
+                      className="flex-shrink-0 flex items-center justify-center"
+                    >
+                      <div className="relative w-[180px] h-[80px]">
+                        <Image
+                          fill
+                          src={icon}
+                          alt="logo"
+                          style={{ objectFit: "contain" }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
               ))}
             </div>
           </div>
-        </div>
-        <div className="flex overflow-hidden mt-5">
-          {[...data2, ...data2].map((index) => (
-            <Image src={index} alt="img" />
-          ))}
         </div>
       </div>
     </section>
