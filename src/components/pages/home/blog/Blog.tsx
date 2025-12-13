@@ -50,7 +50,7 @@ const Blog = () => {
                       : el.description}
                   </Description>
                   <Link href={`/blog_and_media/${el.slug}`}>
-                    <Button className="bg-[#E16C2B] border-none mt-2">
+                    <Button className="bg-[#E16C2B] hover:bg-[#ff8b4d] transition duration-200 border-none mt-2">
                       {t("read")}
                     </Button>
                   </Link>

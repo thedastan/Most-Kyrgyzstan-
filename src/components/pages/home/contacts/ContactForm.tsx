@@ -122,7 +122,7 @@ export const ContactForm = ({ onSubmissionSuccess }: ContactFormProps) => {
         {/* Кнопка */}
         <Button
           type="submit"
-          className="bg-orange-500 text-white py-3 rounded-lg border-none"
+          className="bg-orange-500 hover:bg-[#ff8b4d] transition duration-200 text-white py-3 rounded-lg border-none"
         >
           {t("send")}
         </Button>

@@ -41,12 +41,15 @@ namespace EVENTS {
     id: number;
     title: string;
     description: string;
-    image: string;
     address: string;
     start_time: string;
     start_end: string;
     start_date: string;
     link: string;
+    images: {
+      id: number;
+      image: string;
+    }[];
   }[];
 
   export type GetEventsReq = void;

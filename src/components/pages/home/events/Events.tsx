@@ -15,6 +15,12 @@ import { useGetEventQuery } from "@/redux/api/blog";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
+// Swiper
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Mousewheel, Keyboard, Pagination } from "swiper/modules";
+
 const Events = () => {
   const t = useTranslations("Events");
   const { data } = useGetEventQuery();
@@ -39,26 +45,31 @@ const Events = () => {
 
   const visibleEvents = sortedData.slice(0, visibleCount);
 
+  // Инициализация Fancybox при монтировании
   useEffect(() => {
-    const galleryElements = document.querySelectorAll(
-      "[data-fancybox='events-gallery']"
-    );
+    Fancybox.destroy();
 
-    galleryElements.forEach((el) => {
-      el.addEventListener("click", (e) => {
+    if (!data) return;
+
+    // Подготавливаем данные для Fancybox: маппинг по ID события
+    const allGalleries: Record<number, { src: string; caption: string }[]> = {};
+    data.forEach((event) => {
+      allGalleries[event.id] = event.images.map((img) => ({
+        src: img.image,
+        caption: event.title,
+      }));
+    });
+
+    // Вешаем обработчик на каждый триггер
+    data.forEach((event) => {
+      const trigger = document.querySelector(
+        `[data-fancybox-trigger="events-gallery-${event.id}"]`
+      );
+      if (!trigger) return;
+
+      trigger.addEventListener("click", (e) => {
         e.preventDefault();
-        Fancybox.show(
-          Array.from(galleryElements).map((el) => ({
-            src: (el as HTMLAnchorElement).href,
-            type: "image",
-            caption:
-              (el as HTMLAnchorElement).getAttribute("data-caption") || "",
-          })),
-          {
-            // любые допустимые опции, например:
-            dragToClose: true,
-          }
-        );
+        Fancybox.show(allGalleries[event.id], { dragToClose: true });
       });
     });
 
@@ -87,32 +98,54 @@ const Events = () => {
               <div
                 key={el.id}
                 data-aos="fade-up"
-                className="w-full md:w-full h-full mb-6 md:mb-0"
+                className="w-full h-full flex flex-col"
               >
-                {/* Fancybox обертка */}
-                <Link
-                  href={el.image}
-                  data-fancybox="events-gallery"
-                  data-caption={el.title}
-                >
-                  <Image
-                    className="w-full md:h-[540px] h-[300px] object-cover cursor-pointer"
-                    src={el.image}
-                    alt={el.title}
-                    width={800}
-                    height={600}
-                  />
-                </Link>
+                {/* Swiper карусель */}
+                {el.images && el.images.length > 0 ? (
+                  <div
+                    data-fancybox-trigger={`events-gallery-${el.id}`}
+                    className="cursor-pointer w-full"
+                  >
+                    <Swiper
+                      modules={[Pagination, Mousewheel, Keyboard]}
+                      pagination={{ clickable: true }}
+                      mousewheel={true}
+                      keyboard={true}
+                      spaceBetween={0}
+                      slidesPerView={1}
+                      className="h-[300px] md:h-[540px] w-full"
+                    >
+                      {el.images.map((img, idx) => (
+                        <SwiperSlide
+                          key={idx}
+                          className="!flex !items-center !justify-center"
+                        >
+                          <Image
+                            src={img.image || "/images/placeholder.jpg"}
+                            alt={`${el.title} - ${idx + 1}`}
+                            fill
+                            className="object-cover"
+                            placeholder="blur"
+                            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+                          />
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                  </div>
+                ) : (
+                  // fallback, если images пуст
+                  <div className="w-full h-[300px] md:h-[540px] bg-gray-200 flex items-center justify-center">
+                    Нет изображений
+                  </div>
+                )}
 
+                {/* Описание */}
                 <div
-                  className={`w-full md:flex-col flex-col flex items-center md:justify-start justify-center p-3 gap-2
-                    ${
-                      isBlue
-                        ? "bg-[#1D49C5] text-white"
-                        : "bg-[#F3F5F0] text-black"
-                    }
-                    ${isBlue ? "" : "order-1"}
-                  `}
+                  className={`w-full flex flex-col items-center justify-start p-3 gap-2 ${
+                    isBlue
+                      ? "bg-[#1D49C5] text-white"
+                      : "bg-[#F3F5F0] text-black"
+                  }`}
                 >
                   <div className="flex flex-col w-full gap-2">
                     <Title className={isBlue ? "text-white" : ""}>
@@ -120,12 +153,11 @@ const Events = () => {
                     </Title>
                   </div>
 
-                  {/* Динамическая обёртка */}
                   <div
                     className={
                       isExpanded
-                        ? "flex items-start flex-col-reverse gap-2"
-                        : "flex items-end flex-col md:flex-row"
+                        ? "flex items-start flex-col-reverse gap-2 w-full"
+                        : "flex items-end flex-col md:flex-row w-full"
                     }
                   >
                     <div className="md:w-full flex flex-col gap-2">
@@ -135,8 +167,8 @@ const Events = () => {
                         }`}
                       >
                         <CiLocationOn size={24} />
-                        {el.address}, {el.start_time} - {el.start_end}{" "}
-                        {el.start_date || ""}
+                        {el.address}, {el.start_time} – {el.start_end}{" "}
+                        {el.start_date}
                       </Description>
 
                       <Description>
@@ -145,7 +177,7 @@ const Events = () => {
                             {el.description}
                             <button
                               onClick={() => toggleExpand(el.id)}
-                              className="text-[#E16C2B]  hover:underline ml-1 inline cursor-pointer"
+                              className="text-[#E16C2B] hover:underline ml-1 inline cursor-pointer"
                             >
                               свернуть
                             </button>
@@ -166,15 +198,18 @@ const Events = () => {
                       </Description>
                     </div>
 
-                    <Link
-                      className="w-full md:w-[300px]"
-                      target="_blank"
-                      href={el.link || "#"}
-                    >
-                      <Button className="border-none w-full text-white bg-[#E16C2B] mt-2 md:mt-0">
-                        {t("more")}
-                      </Button>
-                    </Link>
+                    {el.link && (
+                      <Link
+                        className="w-full md:w-[300px]"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={el.link}
+                      >
+                        <Button className="border-none w-full text-white bg-[#E16C2B] hover:bg-[#ff8b4d] transition duration-200 mt-2 md:mt-0">
+                          {t("more")}
+                        </Button>
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>

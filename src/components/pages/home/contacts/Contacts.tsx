@@ -166,7 +166,7 @@ const Contacts = () => {
                     </div>
                     <Button
                       type="submit"
-                      className="w-full md:w-fit bg-[#000000] text-[#FFFFFF] md:py-[24px] md:absolute md:mr-[5px]"
+                      className="w-full md:w-fit bg-[#000000] hover:bg-gray-900 transition duration-200 text-[#FFFFFF] md:py-[24px] md:absolute md:mr-[5px]"
                     >
                       {t("subscribe")}
                     </Button>

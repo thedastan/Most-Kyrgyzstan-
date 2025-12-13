@@ -24,7 +24,7 @@ const WeProjects = () => {
           </div>
 
           <Link href="/all_projects">
-            <Button className="border-none text-white bg-[#E16C2B]">
+            <Button className="border-none text-white bg-[#E16C2B] hover:bg-[#ff8b4d] transition duration-200">
               {t("all_projects")}
             </Button>
           </Link>

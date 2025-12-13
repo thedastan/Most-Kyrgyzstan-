@@ -59,12 +59,11 @@ const BlogMediaDetail = () => {
   }
 
   return (
-    <section className="bg-[#F3F5F0]">
+    <section className="bg-[#F3F5F0] pb-[50px]">
       <div className="w-full h-full flex justify-center">
         <TitleComponent
-          className="text-center py-[30px] md:py-[40px] md:w-[70%] w-[90%]  h-full text-[40px]
-             break-all overflow-wrap
-             md:break-normal md:overflow-wrap-normal leading-[110%]"
+          className="text-center py-[30px] md:py-[40px] md:w-[70%] w-[90%]  h-full !md:text-[40px] text-[32px]
+             leading-[110%]"
         >
           {blog.title}
         </TitleComponent>
@@ -80,13 +79,11 @@ const BlogMediaDetail = () => {
           style={{ backgroundImage: `url(${blog.image})` }}
         />
       </Link>
-      <div className="container !py-10">
-        <div className="w-full flex flex-col items-start">
-          <div className="text-center flex flex-col justify-center items-center">
-            <Description className="border-b pb-2 border-[#E16C2B]">
-              {t("title")}
-            </Description>
-          </div>
+      <div className="container !py-10 flex justify-center">
+        <div className="md:w-[90%] w-full flex flex-col items-start">
+          <Description className="border-b pb-2 border-[#E16C2B]">
+            {t("title")}
+          </Description>
           <Description className="md:text-[18px] text-[18px] font-[400] leading-[140%] mt-[30px]">
             {blog.description}
           </Description>

@@ -22,7 +22,9 @@ const WhoAre = () => {
           </Title>
 
           <Link href="/about_us">
-            <Button> {t("about_us")}</Button>
+            <Button className="hover:bg-[#E16C2B] hover:text-[#ffffff] hover:border-none transition duration-200">
+              {t("about_us")}
+            </Button>
           </Link>
         </div>
       </div>

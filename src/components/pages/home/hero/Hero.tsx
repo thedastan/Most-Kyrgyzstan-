@@ -35,12 +35,12 @@ const Hero = () => {
               <Description>{t("description")}</Description>
               <div className="flex gap-[12px] justify-between md:justify-start">
                 <Link className="w-full md:w-fit" href="#project">
-                  <Button className="px-[40px] w-full md:w-fit md:px-[54px] border-none  py-[10px] rounded-[30px] bg-[#1D49C5] text-[14px] text-[#FFFFFF]">
+                  <Button className="px-[40px] w-full md:w-fit md:px-[54px] border-none  py-[10px] rounded-[30px] bg-[#1D49C5] hover:bg-[#3e72ff] transition duration-200 text-[14px] text-[#FFFFFF]">
                     {t("projects")}
                   </Button>
                 </Link>
                 <Link className="w-full md:w-fit" href="#about">
-                  <Button className="px-[40px] w-full md:w-fit md:px-[54px] border-none  py-[10px] rounded-[30px] bg-[#E16C2B] text-[14px] text-[#FFFFFF]">
+                  <Button className="px-[40px] w-full md:w-fit md:px-[54px] border-none  py-[10px] rounded-[30px] bg-[#E16C2B] hover:bg-[#ff8b4d] transition duration-200 text-[14px] text-[#FFFFFF]">
                     {t("about_us")}
                   </Button>
                 </Link>

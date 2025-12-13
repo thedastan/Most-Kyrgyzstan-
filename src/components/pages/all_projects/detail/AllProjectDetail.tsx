@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { useParams } from "next/navigation";
 import { useGetProjectsQuery } from "@/redux/api/blog";
-import { Title } from "@/components/ui/text/Title";
 import { Description } from "@/components/ui/text/Description";
 import Image from "next/image";
 
@@ -13,6 +12,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useTranslations } from "next-intl";
+import { TitleComponent } from "@/components/ui/text/TitleComponent";
 
 const AllProjectDetail = () => {
   const { data, isLoading } = useGetProjectsQuery();
@@ -38,13 +38,13 @@ const AllProjectDetail = () => {
   return (
     <section className="bg-[#F3F5F0] py-[50px]">
       <div className="w-full h-full flex justify-center">
-        <Title
-          className="text-center py-[30px] md:py-[40px] md:w-[70%] w-[90%]  h-full md:text-[40px] text-[32px]
+        <TitleComponent
+          className="text-center py-[30px] md:py-[40px] md:w-[70%] w-[90%]  h-full !md:text-[40px] text-[32px]
                    break-all overflow-wrap
                    md:break-normal md:overflow-wrap-normal leading-[110%]"
         >
           {project.title}
-        </Title>
+        </TitleComponent>
       </div>
 
       {/* <Title className="text-[32px] mb-4">{project.title}</Title> */}
@@ -87,14 +87,12 @@ const AllProjectDetail = () => {
           />
         </div>
       </div>
-      <div className="container !py-10">
-        <div className="w-full flex flex-col items-start">
-          <div className="text-center flex flex-col justify-center items-center">
-            <Description className=" md:text-[24px] text-[14px] border-b pb-2 border-[#E16C2B]">
-              {t("title")}
-            </Description>
-          </div>
-          <Description className="md:text-[32px] text-[24px] font-[400] leading-[140%] mt-[30px]">
+      <div className="container !py-10 flex justify-center">
+        <div className="md:w-[90%] w-full flex flex-col items-start">
+          <Description className="border-b pb-2 border-[#E16C2B]">
+            {t("title")}
+          </Description>
+          <Description className="md:text-[18px] text-[18px] font-[400] leading-[140%] mt-[30px]">
             {project.description}
           </Description>
         </div>
